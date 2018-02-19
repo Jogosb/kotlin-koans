@@ -15,3 +15,11 @@ fun MyDate.addTimeIntervals(timeInterval: TimeInterval, number: Int): MyDate {
     }
     return MyDate(c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DATE))
 }
+
+operator fun MyDate.plus(timeInterval: TimeInterval) = addTimeIntervals(timeInterval, 1)
+
+
+operator fun MyDate.plus(repeatedTimeInterval: RepeatedTimeInterval) = addTimeIntervals(repeatedTimeInterval.timeInterval,
+        repeatedTimeInterval.n)
+
+operator fun TimeInterval.times(n: Int) = RepeatedTimeInterval(this, n)
